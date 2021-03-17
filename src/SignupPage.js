@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Button,
   Form,
@@ -7,20 +7,19 @@ import {
   Image,
   Message,
   Segment,
-} from 'semantic-ui-react';
-import router from "./router";
+} from "semantic-ui-react";
 
-class LoginPage extends React.Component {
+class SignupPage extends React.Component {
   render() {
     return (
       <Grid
         textAlign="center"
-        style={{ height: '100vh' }}
+        style={{ height: "100vh" }}
         verticalAlign="middle"
       >
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as="h2" color="teal" textAlign="center">
-            ログインしましょう
+            新規会員登録
           </Header>
           <Form size="large">
             <Segment stacked>
@@ -44,12 +43,12 @@ class LoginPage extends React.Component {
             </Segment>
           </Form>
           <Message>
-            New to us? 
-            {/* <Link to="signup">sign up</Link> */}
+            New to us? <a href="#">Sign Up</a>
           </Message>
         </Grid.Column>
       </Grid>
     );
   }
 }
-export default LoginPage;
+
+export default SignupPage;
