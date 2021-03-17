@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import App from './App';
 import LoginPage from './LoginPage';
+import Auth from './Auth';
 
 class Router extends React.Component {
   render() {
@@ -19,6 +20,9 @@ class Router extends React.Component {
           </Route>
           <Route path="/zukan">
             <App />
+          </Route>
+          <Route path="/auth">
+            <Auth />
           </Route>
         </Switch>
       </BrowserRouter>
