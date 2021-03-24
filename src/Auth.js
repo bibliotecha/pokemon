@@ -2,8 +2,17 @@ import React from 'react';
 import { auth, googleAuth } from './firebase';
 
 class Auth extends React.Component {
-  login() {
-    // firebaseを使ってgoogleの認証を行う
+  state = {
+    email: null,
+  };
+
+  async login() {
+    try {
+      const response = await auth.signInWithPopup(googleAuth);
+      console.log('response: ', response);
+    } catch (err) {
+      console.log('err: ', err);
+    }
   }
 
   render() {
