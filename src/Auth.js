@@ -8,7 +8,7 @@ class Auth extends React.Component {
           className="bg-blue-500 text-white p-5 rounded"
           onClick={this.props.hello}
         >
-          ログイン
+          googleでログイン
         </button>
       </div>
     );

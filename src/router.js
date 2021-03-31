@@ -11,7 +11,7 @@ class Router extends React.Component {
     email: null,
   };
   render() {
-    const login = async () => {
+    const googleLogin = async () => {
       try {
         const response = await auth.signInWithPopup(twitterAuth);
         console.log(response.user.email); // kenichikona@gmail.com
@@ -56,7 +56,7 @@ class Router extends React.Component {
             {loggedIn ? (
               <Redirect to="/zukan" />
             ) : (
-              <Auth email={this.state.email} hello={login} />
+              <Auth email={this.state.email} hello={googleLogin} />
             )}
           </Route>
         </Switch>
