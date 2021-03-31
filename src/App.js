@@ -24,6 +24,8 @@ class App extends React.Component {
           'https://pokeapi.co/api/v2/pokemon/' + this.state.inputValue;
         const response = await axios.get(search);
         const newData = response.data;
+
+        // state を更新
         this.setState({
           data: newData,
         });

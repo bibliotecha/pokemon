@@ -1,12 +1,38 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Link, Redirect } from 'react-router-dom';
 import App from './App';
 import LoginPage from './LoginPage';
 import Auth from './Auth';
 import SignupPage from './SignupPage';
+import { auth, googleAuth, twitterAuth } from './firebase';
 
 class Router extends React.Component {
+  state = {
+    email: null,
+  };
   render() {
+    const login = async () => {
+      try {
+        const response = await auth.signInWithPopup(twitterAuth);
+        console.log(response.user.email); // kenichikona@gmail.com
+
+        this.setState({
+          email: response.user.email,
+        });
+      } catch (err) {
+        console.log('err: ', err);
+      }
+    };
+
+    // const displayPage = () => {
+    //   if (loggedIn === true) {
+    //     return <Redirect to="/zukan" />;
+    //   }
+    //   return <Auth email={this.state.email} hello={login} />;
+    // };
+
+    const loggedIn = this.state.email;
+
     return (
       <BrowserRouter>
         <Switch>
@@ -26,7 +52,12 @@ class Router extends React.Component {
             <App />
           </Route>
           <Route path="/auth">
-            <Auth />
+            {/* {displayPage()} */}
+            {loggedIn ? (
+              <Redirect to="/zukan" />
+            ) : (
+              <Auth email={this.state.email} hello={login} />
+            )}
           </Route>
         </Switch>
       </BrowserRouter>
