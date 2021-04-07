@@ -1,0 +1,11 @@
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     email: null,
+  //   };
+  //   this.signup = this.signup.bind(this);
+  // }
+
+  // signup() {
+  //   console.log(this.state.email);
+  // }

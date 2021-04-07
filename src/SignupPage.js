@@ -7,7 +7,7 @@ import {
   Message,
   Segment,
 } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 class SignupPage extends React.Component {
   render() {
@@ -28,6 +28,7 @@ class SignupPage extends React.Component {
                 icon="user"
                 iconPosition="left"
                 placeholder="E-mail address"
+                onChange={this.props.changeE}
               />
               <Form.Input
                 fluid
@@ -35,10 +36,15 @@ class SignupPage extends React.Component {
                 iconPosition="left"
                 placeholder="Password"
                 type="password"
+                onChange={this.props.changeP}
               />
-
-              <Button color="teal" fluid size="large">
-                Login
+              <Button
+                color="teal"
+                fluid
+                size="large"
+                onClick={this.props.click}
+              >
+                Signup
               </Button>
             </Segment>
           </Form>
@@ -46,10 +52,13 @@ class SignupPage extends React.Component {
             すでにアカウントを持っていますか？
             <Link to="/login">ログイン</Link>
           </Message>
+          {this.props.signupErr.length > 0 ? (
+            <div className="text-red-500 text-xl">{this.props.signupErr}</div>
+          ) : null}
         </Grid.Column>
       </Grid>
     );
   }
 }
 
-export default SignupPage;
+export default withRouter(SignupPage);

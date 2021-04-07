@@ -28,6 +28,7 @@ class LoginPage extends React.Component {
                 icon="user"
                 iconPosition="left"
                 placeholder="E-mail address"
+                onChange={this.props.changeE}
               />
               <Form.Input
                 fluid
@@ -35,9 +36,15 @@ class LoginPage extends React.Component {
                 iconPosition="left"
                 placeholder="Password"
                 type="password"
+                onChange={this.props.changeP}
               />
 
-              <Button color="teal" fluid size="large">
+              <Button
+                color="teal"
+                fluid
+                size="large"
+                onClick={this.props.click}
+              >
                 Login
               </Button>
             </Segment>
