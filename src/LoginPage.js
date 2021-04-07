@@ -4,11 +4,10 @@ import {
   Form,
   Grid,
   Header,
-  Image,
   Message,
   Segment,
 } from 'semantic-ui-react';
-import router from "./router";
+import { Link } from 'react-router-dom';
 
 class LoginPage extends React.Component {
   render() {
@@ -44,8 +43,8 @@ class LoginPage extends React.Component {
             </Segment>
           </Form>
           <Message>
-            New to us? 
-            {/* <Link to="signup">sign up</Link> */}
+            まだアカウント持っていませんか？
+            <Link to="/signup">新規会員登録</Link>
           </Message>
         </Grid.Column>
       </Grid>

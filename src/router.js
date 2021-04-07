@@ -4,7 +4,7 @@ import App from './App';
 import LoginPage from './LoginPage';
 import Auth from './Auth';
 import SignupPage from './SignupPage';
-import { auth, googleAuth, twitterAuth } from './firebase';
+import { auth, googleAuth } from './firebase';
 
 class Router extends React.Component {
   state = {
@@ -13,7 +13,7 @@ class Router extends React.Component {
   render() {
     const googleLogin = async () => {
       try {
-        const response = await auth.signInWithPopup(twitterAuth);
+        const response = await auth.signInWithPopup(googleAuth);
         console.log(response.user.email); // kenichikona@gmail.com
 
         this.setState({
@@ -24,13 +24,6 @@ class Router extends React.Component {
       }
     };
 
-    // const displayPage = () => {
-    //   if (loggedIn === true) {
-    //     return <Redirect to="/zukan" />;
-    //   }
-    //   return <Auth email={this.state.email} hello={login} />;
-    // };
-
     const loggedIn = this.state.email;
 
     return (
@@ -38,21 +31,14 @@ class Router extends React.Component {
         <Switch>
           <Route path="/login">
             <LoginPage />
-            <div>
-              <Link to="/signup">新規会員登録</Link>
-            </div>
           </Route>
           <Route path="/signup">
             <SignupPage />
-            <div>
-              <Link to="/login">ログインページへ</Link>
-            </div>
           </Route>
           <Route path="/zukan">
             <App />
           </Route>
           <Route path="/auth">
-            {/* {displayPage()} */}
             {loggedIn ? (
               <Redirect to="/zukan" />
             ) : (

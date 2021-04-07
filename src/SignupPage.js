@@ -1,20 +1,20 @@
-import React from "react";
+import React from 'react';
 import {
   Button,
   Form,
   Grid,
   Header,
-  Image,
   Message,
   Segment,
-} from "semantic-ui-react";
+} from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 class SignupPage extends React.Component {
   render() {
     return (
       <Grid
         textAlign="center"
-        style={{ height: "100vh" }}
+        style={{ height: '100vh' }}
         verticalAlign="middle"
       >
         <Grid.Column style={{ maxWidth: 450 }}>
@@ -43,7 +43,8 @@ class SignupPage extends React.Component {
             </Segment>
           </Form>
           <Message>
-            New to us? <a href="#">Sign Up</a>
+            すでにアカウントを持っていますか？
+            <Link to="/login">ログイン</Link>
           </Message>
         </Grid.Column>
       </Grid>

@@ -19,4 +19,4 @@ const googleAuth = new firebase.auth.GoogleAuthProvider(); // Googleの認証を
 //　必ずenvが読み込まれた確認すること！
 // console.log(firebaseConfig.apiKey);
 
-export { auth, googleAuth, twitterAuth };
+export { auth, googleAuth };
