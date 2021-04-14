@@ -1,0 +1,27 @@
+Relational Database（リレーショナル）
+1 MySQL (Wordpressブログ、簡単なサイト)
+2 PostgreSQl (Youtube, Instagram, Facebook)
+関係を重視する
+
+人のデータベース　職業のデータベース
+A人   ＜ーー＞   エンジニア
+B人              弁護士
+C人
+
+メリット＝データの節約
+デメリット＝難しい
+
+
+NoSQL Database（NoSQL)
+1 MongoDB ()
+2 Firestore (Firebaseというサービスの一部)
+
+{Aとエンジニア}
+{Aと弁護士}
+{bとエンジニア}
+{bと弁護士}
+データベース データベース
+
+メリット＝操作が優しい
+デメリット＝拡張するほどお金がかかる
+

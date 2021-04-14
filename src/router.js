@@ -5,6 +5,7 @@ import LoginPage from './LoginPage';
 import Auth from './Auth';
 import SignupPage from './SignupPage';
 import { auth, googleAuth } from './firebase';
+import Home from './Home';
 
 class Router extends React.Component {
   state = {
@@ -36,14 +37,24 @@ class Router extends React.Component {
             <SignupPage />
           </Route>
           <Route path="/zukan">
-            <App />
-          </Route>
-          <Route path="/auth">
             {loggedIn ? (
               <Redirect to="/zukan" />
             ) : (
               <Auth email={this.state.email} hello={googleLogin} />
             )}
+          </Route>
+          <Route path="/auth">
+            <Auth email={this.state.email} hello={googleLogin} />
+          </Route>
+          {/* <Route path="/">
+            {loggedIn ? (
+              <Home />
+            ) : (
+              <Auth email={this.state.email} hello={googleLogin} />
+            )}
+          </Route> */}
+          <Route path="/">
+            <Home />
           </Route>
         </Switch>
       </BrowserRouter>
