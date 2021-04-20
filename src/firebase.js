@@ -1,6 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import 'firebase/firestore'
+import 'firebase/firestore';
 
 var firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -16,8 +16,7 @@ firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth(); // 認証をするにあたって必要になってくる諸々のツール
 const googleAuth = new firebase.auth.GoogleAuthProvider(); // Googleの認証を使うためのツール
-
-const firestore = firebase.firestore()
+const firestore = firebase.firestore();
 
 //　必ずenvが読み込まれた確認すること！
 // console.log(firebaseConfig.apiKey);
