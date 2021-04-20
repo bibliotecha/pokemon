@@ -47,6 +47,11 @@ class Home extends React.Component {
     alert('データを追加しました');
   };
 
+  //　データを削除する
+  deleteData = () => {
+    firestore.collection('users').doc('EnDdwHIvTgJsywqmh8xc').delete();
+  };
+
   render() {
     return (
       <div className="min-h-screen flex justify-center items-center flex-col">
