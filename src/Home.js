@@ -55,51 +55,56 @@ class Home extends React.Component {
   render() {
     return (
       <div className="min-h-screen flex justify-center items-center flex-col">
-        <div>
-          {this.state.documents.map((document) => (
-            <div>
-              <h1>
-                {document.firstname} {document.lastname}
-              </h1>
-            </div>
-          ))}
-        </div>
-        <button className="p-3 bg-green-500 rounded" onClick={this.getData}>
-          クリック
-        </button>
-
-        <div className="flex">
-          <div className="border">
-            <input
-              value={this.state.inputValue1}
-              onChange={(e) =>
-                this.setState({ ...this.state, inputValue1: e.target.value })
-              }
-              placeholder="firstname"
-            />
+        <div className="max-2xl">
+          <div>
+            {this.state.documents.map((document) => (
+              <div>
+                <h1>
+                  {document.firstname} {document.lastname}
+                </h1>
+              </div>
+            ))}
           </div>
-          <div className="border">
-            <input
-              value={this.state.inputValue2}
-              onChange={(e) =>
-                this.setState({ ...this.state, inputValue2: e.target.value })
-              }
-              placeholder="lastname"
-            />
+          <button className="p-3 bg-green-500 rounded" onClick={this.getData}>
+            クリック
+          </button>
+
+          <div className="flex">
+            <div className="border">
+              <input
+                value={this.state.inputValue1}
+                onChange={(e) =>
+                  this.setState({ ...this.state, inputValue1: e.target.value })
+                }
+                placeholder="firstname"
+              />
+            </div>
+            <div className="border">
+              <input
+                value={this.state.inputValue2}
+                onChange={(e) =>
+                  this.setState({ ...this.state, inputValue2: e.target.value })
+                }
+                placeholder="lastname"
+              />
+            </div>
+            <div>
+              <button
+                className="p-3 bg-blue-500 rounded"
+                onClick={this.addData}
+              >
+                追加する
+              </button>
+            </div>
           </div>
           <div>
-            <button className="p-3 bg-blue-500 rounded" onClick={this.addData}>
-              追加する
+            <button
+              className="p-3 bg-red-500 rounded text-white"
+              onClick={this.getOneData}
+            >
+              get one
             </button>
           </div>
-        </div>
-        <div>
-          <button
-            className="p-3 bg-red-500 rounded text-white"
-            onClick={this.getOneData}
-          >
-            get one
-          </button>
         </div>
       </div>
     );

@@ -1,11 +1,12 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, Link, Redirect } from 'react-router-dom';
-import App from './App';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+
 import LoginPage from './LoginPage';
 import Auth from './Auth';
 import SignupPage from './SignupPage';
 import { auth, googleAuth } from './firebase';
 import Home from './Home';
+import CommentsPage from './Comments';
 
 class Router extends React.Component {
   state = {
@@ -45,6 +46,9 @@ class Router extends React.Component {
           </Route>
           <Route path="/auth">
             <Auth email={this.state.email} hello={googleLogin} />
+          </Route>
+          <Route path="/comments">
+            <CommentsPage />
           </Route>
           {/* <Route path="/">
             {loggedIn ? (
