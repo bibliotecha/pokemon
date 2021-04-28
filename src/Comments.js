@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { firestore } from './firebase';
+
+// CSSの状態
+// 1 hover
+// 2 focus
 
 class CommentsPage extends React.Component {
   state = {
-    comments: [],
-    title: '',
-    content: '',
+    comments: [], // 外部からの情報はstateに入れる、複数であれば初期値は配列
+    title: '', // 入力欄はstate,初期値はからの文字列
+    content: '', // 入力欄はstate,初期値はからの文字列
     selected: null,
   };
 
@@ -25,11 +29,15 @@ class CommentsPage extends React.Component {
       .collection('comments')
       .get()
       .then((snapshots) => {
+        // 今後詰めていくための空の容器を用意する
         const data = [];
         snapshots.forEach((snapshot) =>
-          data.push({ id: snapshot.id, ...snapshot.data() })
+          data.push({
+            id: snapshot.id,
+            title: snapshot.data().title,
+            content: snapshot.data().content,
+          })
         );
-
         this.setState({ comments: data });
       });
   };
@@ -38,21 +46,25 @@ class CommentsPage extends React.Component {
     firestore.collection('comments').onSnapshot((snapshots) => {
       const data = [];
       snapshots.forEach((snapshot) =>
-        data.push({ id: snapshot.id, ...snapshot.data() })
+        data.push({
+          id: snapshot.id,
+          title: snapshot.data().title,
+          content: snapshot.data().content,
+        })
       );
-
       this.setState({ comments: data });
     });
   };
 
   deleteComment = () => {
-    if (this.state.selected) {
+    if (this.state.selected !== null) {
       firestore.collection('comments').doc(this.state.selected.id).delete();
     }
   };
 
   updateComment = () => {
     if (this.state.selected) {
+      // this.state.selected : { id: 'sdf40j29fj209', title: 'sdf', content: 'sdfsdfioj' }
       firestore.collection('comments').doc(this.state.selected.id).update({
         title: this.state.title,
         content: this.state.content,
@@ -61,9 +73,11 @@ class CommentsPage extends React.Component {
   };
 
   selectComment = (comment) => {
-    if (!this.state.selected) {
+    // console.log('commentがここ', comment);
+    if (this.state.selected === null) {
       this.setState({ selected: comment });
     } else {
+      //　すでに選択されているコメントのid === クリックした時のコメントのid
       if (this.state.selected.id === comment.id) {
         this.setState({ selected: null });
       } else {
@@ -88,20 +102,20 @@ class CommentsPage extends React.Component {
                   type="text"
                   style={{ width: 500 }}
                   className="outline-none bg-transparent p-3 text-lg border-b focus:border-gray-400 transition duration-200"
-                  value={this.comment}
+                  value={this.state.title}
                   onChange={(e) => this.setState({ title: e.target.value })}
                 />
               </div>
             </div>
             <div className="mb-5">
               <label htmlFor="content">内容</label>
-              <div className="border-bottom border-gray-300 mb-5">
+              <div className="mb-5">
                 <input
                   id="content"
                   type="text"
                   style={{ width: 500 }}
-                  className="outline-none bg-transparent p-3 text-lg border-b focus:border-gray-400 transition duration-200"
-                  value={this.comment}
+                  className="outline-none bg-transparent p-3 text-lg border-b border-gray-300 focus:border-gray-400 transition duration-200"
+                  value={this.state.content}
                   onChange={(e) => this.setState({ content: e.target.value })}
                 />
               </div>
@@ -117,13 +131,14 @@ class CommentsPage extends React.Component {
           </div>
           <div style={{ maxWidth: 300 }} className="w-full">
             <button
-              className="mb-5 py-6 w-full block bg-green-500 rounded-lg text-white font-bold"
+              className="mb-5 py-6 w-full block bg-green-500 hover:bg-green-600 rounded-lg text-white font-bold"
               onClick={this.updateComment}
             >
               更新する
             </button>
+
             <button
-              className="mb-5 py-6 w-full block bg-yellow-500 rounded-lg text-white font-bold"
+              className="mb-5 py-6 w-full block bg-yellow-500 hover:bg-yellow-600 rounded-lg text-white font-bold"
               onClick={this.deleteComment}
             >
               削除する
